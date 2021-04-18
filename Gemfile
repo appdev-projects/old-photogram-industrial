@@ -75,4 +75,5 @@ group :development do
   gem 'rubocop-rails'
   gem 'skylight'
   gem 'web_git', github: 'firstdraft/web_git', branch: 'spring2020'
+  gem 'devise'
 end
