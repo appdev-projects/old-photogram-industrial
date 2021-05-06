@@ -1,0 +1,9 @@
+<%= render "shared/tabs", current_tab: "posts" %>
+
+<p class="text-center text-secondary mt-2">
+  You have posted <%= current_user.own_photos.count %> photos 
+</p>
+
+<% current_user.own_photos.each do |photo| %>
+  <%= render "photos/photo", photo: photo %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_144952) do
+ActiveRecord::Schema.define(version: 2021_04_25_213216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_144952) do
   create_table "comments", force: :cascade do |t|
     t.bigint "author_id", null: false
     t.bigint "photo_id", null: false
-    t.text "body"
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_comments_on_author_id"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_144952) do
 
   create_table "photos", force: :cascade do |t|
     t.string "image"
-    t.integer "comments_count"
-    t.integer "likes_count"
+    t.integer "comments_count", default: 0
+    t.integer "likes_count", default: 0
     t.text "caption"
     t.bigint "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -57,12 +57,12 @@ ActiveRecord::Schema.define(version: 2021_04_15_144952) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.citext "email", default: "", null: false
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "username"
+    t.citext "username"
     t.boolean "private", default: true
     t.integer "likes_count", default: 0
     t.integer "comments_count", default: 0
